@@ -77,6 +77,7 @@ def future_calendar_collector(qlib_dir: [str, Path], freq: str = "day"):
         if int(_row_data[1]) == 1:
             data_list.append(_row_data[0])
     data_list = sorted(data_list)
+    data_list = sorted(set(daily_calendar.loc[:, 0].values.tolist() + data_list))
     date_list = generate_qlib_calendar(data_list, freq=freq)
     write_calendar_to_qlib(qlib_dir, date_list, freq=freq)
     bs.logout()

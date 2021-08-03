@@ -19,6 +19,7 @@ from contextlib import contextmanager
 from typing import Callable, List
 
 import fire
+from loguru import logger
 import pymongo
 from bson.binary import Binary
 from bson.objectid import ObjectId
@@ -331,7 +332,18 @@ class TaskManager:
         # A workaround to use the class attribute.
         if status is None:
             status = TaskManager.STATUS_DONE
-        self.task_pool.update_one({"_id": task["_id"]}, {"$set": {"status": status, "res": Binary(pickle.dumps(res))}})
+        retry = 0
+        succeed = False
+        while retry <= 3 and not succeed:
+            try:
+                self.task_pool.update_one({"_id": task["_id"]}, {"$set": {"status": status, "res": Binary(pickle.dumps(res))}})
+                succeed = True
+            except Exception as e:
+                retry += 1
+                import traceback
+                logger.warning(f"Exception in commit task for {retry} time: {e}, {traceback.format_exc()}")
+        if not succeed:
+            raise Exception(f"Failed to commit task.")
 
     def return_task(self, task, status=STATUS_WAITING):
         """
