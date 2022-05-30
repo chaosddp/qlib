@@ -76,7 +76,7 @@ class Serializable:
                     obj.config(**params, recursive=True)
                 del self.__dict__[self.FLAG_KEY]
 
-    def to_pickle(self, path: Union[Path, str], dump_all: bool = None, exclude: list = None):
+    def to_pickle(self, path: Union[Path, str], dump_all: bool = None, exclude: list = None, protocol=None):
         """
         Dump self to a pickle file.
 
@@ -87,7 +87,7 @@ class Serializable:
         """
         self.config(dump_all=dump_all, exclude=exclude)
         with Path(path).open("wb") as f:
-            self.get_backend().dump(self, f)
+            self.get_backend().dump(self, f, protocol=protocol)
 
     @classmethod
     def load(cls, filepath):
