@@ -1,6 +1,5 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
-from __future__ import annotations
 import pandas as pd
 from typing import Union, List
 from qlib.utils import init_instance_by_config
@@ -121,7 +120,7 @@ def convert_index_format(df: Union[pd.DataFrame, pd.Series], level: str = "datet
     return df
 
 
-def init_task_handler(task: dict) -> Union[DataHandler, None]:
+def init_task_handler(task: dict):
     """
     initialize the handler part of the task **inplace**
 
