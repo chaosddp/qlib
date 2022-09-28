@@ -302,7 +302,7 @@ class BaseExecutor:
 
         return res
 
-    def get_all_executors(self) -> List[BaseExecutor]:
+    def get_all_executors(self):
         """get all executors"""
         return [self]
 
@@ -317,8 +317,8 @@ class NestedExecutor(BaseExecutor):
     def __init__(
         self,
         time_per_step: str,
-        inner_executor: Union[BaseExecutor, dict],
-        inner_strategy: Union[BaseStrategy, dict],
+        inner_executor,
+        inner_strategy,
         start_time: Union[str, pd.Timestamp] = None,
         end_time: Union[str, pd.Timestamp] = None,
         indicator_config: dict = {},
