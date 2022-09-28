@@ -20,8 +20,8 @@ from ..utils.time import Freq
 def backtest_loop(
     start_time: Union[pd.Timestamp, str],
     end_time: Union[pd.Timestamp, str],
-    trade_strategy: BaseStrategy,
-    trade_executor: BaseExecutor,
+    trade_strategy,
+    trade_executor,
 ) -> Tuple[PortfolioMetrics, Indicator]:
     """backtest function for the interaction of the outermost strategy and executor in the nested decision execution
 
@@ -46,8 +46,8 @@ def backtest_loop(
 def collect_data_loop(
     start_time: Union[pd.Timestamp, str],
     end_time: Union[pd.Timestamp, str],
-    trade_strategy: BaseStrategy,
-    trade_executor: BaseExecutor,
+    trade_strategy,
+    trade_executor,
     return_value: dict = None,
 ) -> Generator[BaseTradeDecision, Optional[BaseTradeDecision], None]:
     """Generator for collecting the trade decision data for rl training
