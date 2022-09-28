@@ -27,7 +27,7 @@ class BaseStrategy:
         outer_trade_decision: BaseTradeDecision = None,
         level_infra: LevelInfrastructure = None,
         common_infra: CommonInfrastructure = None,
-        trade_exchange: Exchange = None,
+        trade_exchange = None,
     ) -> None:
         """
         Parameters
@@ -68,7 +68,7 @@ class BaseStrategy:
         return self.common_infra.get("trade_account").current_position
 
     @property
-    def trade_exchange(self) -> Exchange:
+    def trade_exchange(self):
         """get trade exchange in a prioritized order"""
         return getattr(self, "_trade_exchange", None) or self.common_infra.get("trade_exchange")
 
