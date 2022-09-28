@@ -381,7 +381,7 @@ class Exchange:
     def deal_order(
         self,
         order: Order,
-        trade_account: Account = None,
+        trade_account = None,
         position: BasePosition = None,
         dealt_order_amount: Dict[str, float] = defaultdict(float),
     ) -> Tuple[float, float, float]:
