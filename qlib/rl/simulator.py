@@ -1,8 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from __future__ import annotations
-
 from typing import TYPE_CHECKING, Any, Generic, Optional, TypeVar
 
 from .seed import InitialStateType
