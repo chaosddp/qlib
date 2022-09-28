@@ -10,7 +10,6 @@ Two modes are supported
 - server
 
 """
-from __future__ import annotations
 
 import os
 import re
@@ -323,7 +322,7 @@ class QlibConfig(Config):
             else:
                 return QlibConfig.LOCAL_URI
 
-        def get_data_uri(self, freq: Optional[Union[str, Freq]] = None) -> Path:
+        def get_data_uri(self, freq= None) -> Path:
             """
             please refer DataPathManager's __init__ and class doc
             """
