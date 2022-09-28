@@ -5,7 +5,7 @@
 Mimicks the hooks of Keras / PyTorch-Lightning, but tailored for the context of RL.
 """
 
-from __future__ import annotations
+
 
 import copy
 import shutil

@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from __future__ import annotations
+
 
 import collections
 from types import GeneratorType

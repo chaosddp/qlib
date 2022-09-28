@@ -6,7 +6,7 @@ This is to support finite env in vector env.
 See https://github.com/thu-ml/tianshou/issues/322 for details.
 """
 
-from __future__ import annotations
+
 
 import copy
 import warnings
