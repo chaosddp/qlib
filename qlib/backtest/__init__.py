@@ -180,7 +180,7 @@ def get_strategy_executor(
     account: Union[float, int, dict] = 1e9,
     exchange_kwargs: dict = {},
     pos_type: str = "Position",
-) -> Tuple[BaseStrategy, BaseExecutor]:
+):
 
     # NOTE:
     # - for avoiding recursive import
@@ -221,7 +221,7 @@ def backtest(
     account: Union[float, int, dict] = 1e9,
     exchange_kwargs: dict = {},
     pos_type: str = "Position",
-) -> Tuple[PortfolioMetrics, Indicator]:
+):
     """initialize the strategy and executor, then backtest function for the interaction of the outermost strategy and
     executor in the nested decision execution
 
@@ -309,8 +309,8 @@ def collect_data(
 
 
 def format_decisions(
-    decisions: List[BaseTradeDecision],
-) -> Optional[Tuple[str, List[Tuple[BaseTradeDecision, Union[Tuple, None]]]]]:
+    decisions,
+):
     """
     format the decisions collected by `qlib.backtest.collect_data`
     The decisions will be organized into a tree-like structure.
