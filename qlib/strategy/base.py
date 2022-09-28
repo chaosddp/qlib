@@ -259,8 +259,8 @@ class RLIntStrategy(RLStrategy, metaclass=ABCMeta):
     def __init__(
         self,
         policy,
-        state_interpreter: dict | StateInterpreter,
-        action_interpreter: dict | ActionInterpreter,
+        state_interpreter,
+        action_interpreter,
         outer_trade_decision: BaseTradeDecision = None,
         level_infra: LevelInfrastructure = None,
         common_infra: CommonInfrastructure = None,
