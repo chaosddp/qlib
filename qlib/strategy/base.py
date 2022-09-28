@@ -1,6 +1,5 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
-from __future__ import annotations
 
 from abc import ABCMeta, abstractmethod
 from typing import Any, Generator, Optional, TYPE_CHECKING, Union
