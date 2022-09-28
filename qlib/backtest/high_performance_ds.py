@@ -1,8 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from __future__ import annotations
-
 import inspect
 import logging
 from collections import OrderedDict
@@ -227,31 +225,31 @@ class BaseSingleMetric:
         """
         raise NotImplementedError(f"Please implement the `__init__` method")
 
-    def __add__(self, other: Union[BaseSingleMetric, int, float]) -> BaseSingleMetric:
+    def __add__(self, other):
         raise NotImplementedError(f"Please implement the `__add__` method")
 
-    def __radd__(self, other: Union[BaseSingleMetric, int, float]) -> BaseSingleMetric:
+    def __radd__(self, other):
         return self + other
 
-    def __sub__(self, other: Union[BaseSingleMetric, int, float]) -> BaseSingleMetric:
+    def __sub__(self, other):
         raise NotImplementedError(f"Please implement the `__sub__` method")
 
-    def __rsub__(self, other: Union[BaseSingleMetric, int, float]) -> BaseSingleMetric:
+    def __rsub__(self, other):
         raise NotImplementedError(f"Please implement the `__rsub__` method")
 
-    def __mul__(self, other: Union[BaseSingleMetric, int, float]) -> BaseSingleMetric:
+    def __mul__(self, other):
         raise NotImplementedError(f"Please implement the `__mul__` method")
 
-    def __truediv__(self, other: Union[BaseSingleMetric, int, float]) -> BaseSingleMetric:
+    def __truediv__(self, other):
         raise NotImplementedError(f"Please implement the `__truediv__` method")
 
-    def __eq__(self, other: object) -> BaseSingleMetric:
+    def __eq__(self, other: object):
         raise NotImplementedError(f"Please implement the `__eq__` method")
 
-    def __gt__(self, other: Union[BaseSingleMetric, int, float]) -> BaseSingleMetric:
+    def __gt__(self, other):
         raise NotImplementedError(f"Please implement the `__gt__` method")
 
-    def __lt__(self, other: Union[BaseSingleMetric, int, float]) -> BaseSingleMetric:
+    def __lt__(self, other):
         raise NotImplementedError(f"Please implement the `__lt__` method")
 
     def __len__(self) -> int:
@@ -268,7 +266,7 @@ class BaseSingleMetric:
 
         raise NotImplementedError(f"Please implement the `count` method")
 
-    def abs(self) -> BaseSingleMetric:
+    def abs(self):
         raise NotImplementedError(f"Please implement the `abs` method")
 
     @property
@@ -277,17 +275,17 @@ class BaseSingleMetric:
 
         raise NotImplementedError(f"Please implement the `empty` method")
 
-    def add(self, other: BaseSingleMetric, fill_value: float = None) -> BaseSingleMetric:
+    def add(self, other, fill_value: float = None):
         """Replace np.NaN with fill_value in two metrics and add them."""
 
         raise NotImplementedError(f"Please implement the `add` method")
 
-    def replace(self, replace_dict: dict) -> BaseSingleMetric:
+    def replace(self, replace_dict: dict):
         """Replace the value of metric according to replace_dict."""
 
         raise NotImplementedError(f"Please implement the `replace` method")
 
-    def apply(self, func: Callable) -> BaseSingleMetric:
+    def apply(self, func: Callable):
         """Replace the value of metric with func (metric).
         Currently, the func is only qlib/backtest/order/Order.parse_dir.
         """
@@ -331,7 +329,7 @@ class BaseOrderIndicator:
 
         raise NotImplementedError(f"Please implement the 'assign' method")
 
-    def transfer(self, func: Callable, new_col: str = None) -> Optional[BaseSingleMetric]:
+    def transfer(self, func: Callable, new_col: str = None):
         """compute new metric with existing metrics.
 
         Parameters
@@ -376,7 +374,7 @@ class BaseOrderIndicator:
 
         raise NotImplementedError(f"Please implement the 'get_metric_series' method")
 
-    def get_index_data(self, metric: str) -> SingleData:
+    def get_index_data(self, metric: str):
         """get one metric with the format of SingleData
 
         Parameters
@@ -394,8 +392,8 @@ class BaseOrderIndicator:
 
     @staticmethod
     def sum_all_indicators(
-        order_indicator: BaseOrderIndicator,
-        indicators: List[BaseOrderIndicator],
+        order_indicator,
+        indicators,
         metrics: Union[str, List[str]],
         fill_value: float = 0,
     ) -> None:
@@ -536,17 +534,17 @@ class PandasSingleMetric(SingleMetric):
     def index(self):
         return list(self.metric.index)
 
-    def add(self, other: BaseSingleMetric, fill_value: float = None) -> PandasSingleMetric:
+    def add(self, other, fill_value: float = None):
         other = cast(PandasSingleMetric, other)
         return self.__class__(self.metric.add(other.metric, fill_value=fill_value))
 
-    def replace(self, replace_dict: dict) -> PandasSingleMetric:
+    def replace(self, replace_dict: dict):
         return self.__class__(self.metric.replace(replace_dict))
 
-    def apply(self, func: Callable) -> PandasSingleMetric:
+    def apply(self, func: Callable):
         return self.__class__(self.metric.apply(func))
 
-    def reindex(self, index: Any, fill_value: float) -> PandasSingleMetric:
+    def reindex(self, index: Any, fill_value: float):
         return self.__class__(self.metric.reindex(index, fill_value=fill_value))
 
     def __repr__(self):
@@ -567,7 +565,7 @@ class PandasOrderIndicator(BaseOrderIndicator):
     def assign(self, col: str, metric: Union[dict, pd.Series]) -> None:
         self.data[col] = PandasSingleMetric(metric)
 
-    def get_index_data(self, metric: str) -> SingleData:
+    def get_index_data(self, metric: str):
         if metric in self.data:
             return idd.SingleData(self.data[metric].metric)
         else:
@@ -584,8 +582,8 @@ class PandasOrderIndicator(BaseOrderIndicator):
 
     @staticmethod
     def sum_all_indicators(
-        order_indicator: BaseOrderIndicator,
-        indicators: List[BaseOrderIndicator],
+        order_indicator,
+        indicators,
         metrics: Union[str, List[str]],
         fill_value: float = 0,
     ) -> None:
@@ -632,8 +630,8 @@ class NumpyOrderIndicator(BaseOrderIndicator):
 
     @staticmethod
     def sum_all_indicators(
-        order_indicator: BaseOrderIndicator,
-        indicators: List[BaseOrderIndicator],
+        order_indicator,
+        indicators,
         metrics: Union[str, List[str]],
         fill_value: float = 0,
     ) -> None:
