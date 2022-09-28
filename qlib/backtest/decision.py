@@ -1,8 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from __future__ import annotations
-
 from abc import abstractmethod
 from datetime import time
 from enum import IntEnum
