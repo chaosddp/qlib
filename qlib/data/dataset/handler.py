@@ -497,10 +497,11 @@ class DataHandlerLP(DataHandler):
         # shared data processors
         # 1) assign
         _shared_df = self._data
-        if not self._is_proc_readonly(self.shared_processors):  # avoid modifying the original data
-            _shared_df = _shared_df.copy()
-        # 2) process
-        _shared_df = self._run_proc_l(_shared_df, self.shared_processors, with_fit=with_fit, check_for_infer=True)
+        if hasattr(self, "shared_processors"):
+            if not self._is_proc_readonly(self.shared_processors):  # avoid modifying the original data
+                _shared_df = _shared_df.copy()
+            # 2) process
+            _shared_df = self._run_proc_l(_shared_df, self.shared_processors, with_fit=with_fit, check_for_infer=True)
 
         # data for inference
         # 1) assign
