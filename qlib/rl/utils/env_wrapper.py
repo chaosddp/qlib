@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from __future__ import annotations
+# -*- coding: future_annotations -*-
 
 import weakref
 from typing import Any, Callable, cast, Dict, Generic, Iterable, Iterator, Optional, Tuple

@@ -15,7 +15,7 @@ The two modules communicate by the "log" field in "info" returned by ``env.step(
 # NOTE: This file contains many hardcoded / ad-hoc rules.
 # Refactoring it will be one of the future tasks.
 
-from __future__ import annotations
+# -*- coding: future_annotations -*-
 
 import logging
 from collections import defaultdict

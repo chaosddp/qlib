@@ -17,7 +17,7 @@ This file shows resemblence to qlib.backtest.high_performance_ds. We might merge
 
 # TODO: merge with qlib/backtest/high_performance_ds.py
 
-from __future__ import annotations
+# -*- coding: future_annotations -*-
 
 from functools import lru_cache
 from pathlib import Path

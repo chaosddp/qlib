@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
-from __future__ import annotations
+# -*- coding: future_annotations -*-
 
 import copy
 from typing import Dict, List, Optional, Tuple, cast

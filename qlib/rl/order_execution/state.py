@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from __future__ import annotations
+# -*- coding: future_annotations -*-
 
 import typing
 from typing import cast, NamedTuple, Optional, Tuple
