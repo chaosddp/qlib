@@ -1,8 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from __future__ import annotations
-
 from typing import TYPE_CHECKING, Generator, Optional, Tuple, Union, cast
 
 import pandas as pd
