@@ -56,7 +56,7 @@ class BaseStrategy:
         self._trade_exchange = trade_exchange
 
     @property
-    def executor(self) -> BaseExecutor:
+    def executor(self):
         return self.level_infra.get("executor")
 
     @property
@@ -64,7 +64,7 @@ class BaseStrategy:
         return self.level_infra.get("trade_calendar")
 
     @property
-    def trade_position(self) -> BasePosition:
+    def trade_position(self):
         return self.common_infra.get("trade_account").current_position
 
     @property
