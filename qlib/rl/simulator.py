@@ -47,7 +47,7 @@ class Simulator(Generic[InitialStateType, StateType, ActType]):
         Simulators are discouraged to use this, because it's prone to induce errors.
     """
 
-    env: Optional[EnvWrapper] = None
+    env = None
 
     def __init__(self, initial: InitialStateType, **kwargs: Any) -> None:
         pass
