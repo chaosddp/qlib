@@ -157,7 +157,7 @@ class OrderHelper:
         - It involves too much interaction with the exchange when generating orders.
     """
 
-    def __init__(self, exchange: Exchange) -> None:
+    def __init__(self, exchange) -> None:
         self.exchange = exchange
 
     @staticmethod
@@ -262,7 +262,7 @@ class IdxTradeRange(TradeRange):
 class TradeRangeByTime(TradeRange):
     """This is a helper function for make decisions"""
 
-    def __init__(self, start_time: str | time, end_time: str | time) -> None:
+    def __init__(self, start_time) -> None:
         """
         This is a callable class.
 
@@ -313,7 +313,7 @@ class BaseTradeDecision(Generic[DecisionType]):
         2. Same as `case 1.3`
     """
 
-    def __init__(self, strategy: BaseStrategy, trade_range: Union[Tuple[int, int], TradeRange] = None) -> None:
+    def __init__(self, strategy, trade_range: Union[Tuple[int, int], TradeRange] = None) -> None:
         """
         Parameters
         ----------
@@ -356,7 +356,7 @@ class BaseTradeDecision(Generic[DecisionType]):
         """
         raise NotImplementedError(f"This type of input is not supported")
 
-    def update(self, trade_calendar: TradeCalendarManager) -> Optional[BaseTradeDecision]:
+    def update(self, trade_calendar: TradeCalendarManager):
         """
         Be called at the **start** of each step.
 
@@ -513,7 +513,7 @@ class BaseTradeDecision(Generic[DecisionType]):
                 return True
         return True
 
-    def mod_inner_decision(self, inner_trade_decision: BaseTradeDecision) -> None:
+    def mod_inner_decision(self, inner_trade_decision) -> None:
         """
         This method will be called on the inner_trade_decision after it is generated.
         `inner_trade_decision` will be changed **inplace**.
@@ -551,7 +551,7 @@ class TradeDecisionWO(BaseTradeDecision[Order]):
     def __init__(
         self,
         order_list: List[Order],
-        strategy: BaseStrategy,
+        strategy,
         trade_range: Union[Tuple[int, int], TradeRange] = None,
     ) -> None:
         super().__init__(strategy, trade_range=trade_range)
