@@ -866,7 +866,7 @@ class LocalExpressionProvider(ExpressionProvider):
         # 1) The stock data is currently float. If there is other types of data, this part needs to be re-implemented.
         # 2) The the precision should be configurable
         try:
-            series = series.astype(np.float32)
+            series = series.astype(np.float)
         except ValueError:
             pass
         except TypeError:
