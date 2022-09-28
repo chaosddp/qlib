@@ -1,8 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-from __future__ import annotations
-
 from abc import abstractmethod
 from typing import Any, Set, Tuple, TYPE_CHECKING, Union
 
@@ -31,7 +29,7 @@ class TradeCalendarManager:
         freq: str,
         start_time: Union[str, pd.Timestamp] = None,
         end_time: Union[str, pd.Timestamp] = None,
-        level_infra: LevelInfrastructure = None,
+        level_infra = None,
     ) -> None:
         """
         Parameters
@@ -226,7 +224,7 @@ class BaseInfrastructure:
     def has(self, infra_name: str) -> bool:
         return infra_name in self.get_support_infra() and hasattr(self, infra_name)
 
-    def update(self, other: BaseInfrastructure) -> None:
+    def update(self, other) -> None:
         support_infra = other.get_support_infra()
         infra_dict = {_infra: getattr(other, _infra) for _infra in support_infra if hasattr(other, _infra)}
         self.reset_infra(**infra_dict)
@@ -263,12 +261,12 @@ class LevelInfrastructure(BaseInfrastructure):
                 trade_calendar=TradeCalendarManager(freq, start_time=start_time, end_time=end_time, level_infra=self),
             )
 
-    def set_sub_level_infra(self, sub_level_infra: LevelInfrastructure) -> None:
+    def set_sub_level_infra(self, sub_level_infra) -> None:
         """this will make the calendar access easier when crossing multi-levels"""
         self.reset_infra(sub_level_infra=sub_level_infra)
 
 
-def get_start_end_idx(trade_calendar: TradeCalendarManager, outer_trade_decision: BaseTradeDecision) -> Tuple[int, int]:
+def get_start_end_idx(trade_calendar: TradeCalendarManager, outer_trade_decision) -> Tuple[int, int]:
     """
     A helper function for getting the decision-level index range limitation for inner strategy
     - NOTE: this function is not applicable to order-level
